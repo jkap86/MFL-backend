@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { parseStringPromise } from "xml2js";
 import { AppError } from "../middlewares/error.middleware";
 

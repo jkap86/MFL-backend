@@ -19,7 +19,7 @@ export class AuthController {
 
       const session = await authService.login(username, password);
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "Login successful",
         data: {
@@ -30,7 +30,7 @@ export class AuthController {
         },
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -51,7 +51,7 @@ export class AuthController {
         throw new AppError(401, "Session expired or invalid");
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         data: {
           username: session.username,
@@ -60,7 +60,7 @@ export class AuthController {
         },
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -77,12 +77,12 @@ export class AuthController {
 
       const leagues = await authService.refreshLeagues(cookie);
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         data: { leagues },
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -97,12 +97,12 @@ export class AuthController {
         authService.logout(cookie);
       }
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "Logged out successfully",
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -138,13 +138,13 @@ export class AuthController {
         cookie
       );
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "Lineup updated successfully",
         data: result,
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -179,13 +179,13 @@ export class AuthController {
         cookie
       );
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "Waiver claim submitted",
         data: result,
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 
@@ -222,13 +222,13 @@ export class AuthController {
         cookie
       );
 
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         message: "Trade proposed successfully",
         data: result,
       });
     } catch (error) {
-      next(error);
+      return next(error);
     }
   }
 }
